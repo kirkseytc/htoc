@@ -2,12 +2,12 @@
 #include <stdlib.h>
 #include <string.h>
 
-#define MAX_CHAR_LINE 1024
+#define MAX_CHAR_LINE 512
 
 int main(int argc, char* argv[]){
 
     if(argc == 1){
-        printf("No Actions Performed.\n");
+        printf("H -> C : Version 0.9\n");
         return 0;
     }
 
