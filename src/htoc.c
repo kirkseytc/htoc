@@ -16,6 +16,7 @@ int main(int argc, char* argv[]){
         const int len = strlen(argv[i]) + 1;
 
         char tempArr[len];
+        strcpy(tempArr, argv[i]);
 
         FILE* headerFile = fopen(argv[i], "r");
 
@@ -24,8 +25,9 @@ int main(int argc, char* argv[]){
             return 1;
         }
 
-        int index = strchr(tempArr, '.') - &tempArr[0];
-        tempArr[index + 1] = 'c'; 
+        char* index = strchr(tempArr, '.');
+        index++;
+        *index = 'c';
 
         FILE* newFile = fopen(tempArr, "w");
         if(!newFile){
@@ -33,15 +35,7 @@ int main(int argc, char* argv[]){
             return 2;
         }
 
-        char* nameWOExt;
-        nameWOExt = strtok(argv[i], ".");
-
-        if(!nameWOExt){
-            printf("nameWOExt is NULL\n");
-            return 8;
-        }
-
-        fprintf(newFile, "#include \"%s.h\"\n\n", nameWOExt);
+        fprintf(newFile, "#include \"%s.h\"\n", strtok(tempArr, "."));
 
         char line[MAX_CHAR_LINE];
 
@@ -51,14 +45,14 @@ int main(int argc, char* argv[]){
                 continue;
             }
 
-            for(unsigned short s; s < MAX_CHAR_LINE; s++){
+            for(unsigned short s = 0; s < MAX_CHAR_LINE; s++){
 
                 if(line[s] == '\0'){
                     break;
                 }
 
                 if(line[s] == ';'){
-                    fputs(" {\n\n}", newFile);
+                    fputs(" {\n\n}\n", newFile);
                     continue;
                 }
 
@@ -67,11 +61,8 @@ int main(int argc, char* argv[]){
 
         }
 
-        free(nameWOExt);
         fclose(newFile);
         fclose(headerFile);
-
-        printf("%s\n", argv[i]);
 
     }
 
