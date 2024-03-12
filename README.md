@@ -1,6 +1,6 @@
 # htoc
 
-htoc is a command line tool that takes in a header file and will create a template c/cpp file from it.
+htoc is a command line tool that takes in a header file and will create a template c file from it.
 
 ## Installation
 
@@ -24,11 +24,6 @@ htoc example.h
 Multiple File Usage:
 ```bash
 htoc example1.h example2.h example3.h
-```
-
-C++ Usage:
-```bash
-htoc -cpp example.h
 ```
 
 ## Goal of Project
