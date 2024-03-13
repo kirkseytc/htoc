@@ -1,6 +1,6 @@
 # htoc
 
-htoc is a command line tool for GNU Linux that takes in a header file and will create a template c file from it.
+htoc is a command line tool for GNU Linux that takes in a header file and will create a c file with the method declarations already rewritten.
 
 ## Dependency
 
