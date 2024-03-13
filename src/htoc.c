@@ -7,7 +7,7 @@
 int main(int argc, char* argv[]){
 
     if(argc == 1){
-        printf("H -> C : Version 0.9.5\n");
+        printf("H -> C : Version 1.0\n");
         return 0;
     }
 
@@ -53,6 +53,29 @@ int main(int argc, char* argv[]){
                 }
 
                 continue;
+
+            }
+
+            if(strstr(line, "struct") != NULL || strstr(line, "union") != NULL || strstr(line, "enum") != NULL){
+
+                fpos_t currLinePos;
+                fgetpos(headerFile, &currLinePos);
+
+                char tempLine[MAX_CHAR_LINE];
+                fgets(tempLine, MAX_CHAR_LINE, headerFile);
+
+                if(strchr(tempLine, '{') != NULL){ // next line has "{"
+
+                    userDataTypeFlag = 1;
+                    continue;
+
+                } else {
+
+                    fsetpos(headerFile, &currLinePos);
+
+                }
+
+
 
             }
 
