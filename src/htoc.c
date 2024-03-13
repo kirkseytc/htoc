@@ -7,7 +7,7 @@
 int main(int argc, char* argv[]){
 
     if(argc == 1){
-        printf("H -> C : Version 0.9\n");
+        printf("H -> C : Version 0.9.5\n");
         return 0;
     }
 
@@ -38,10 +38,31 @@ int main(int argc, char* argv[]){
         fprintf(newFile, "#include \"%s.h\"\n", strtok(tempArr, "."));
 
         char line[MAX_CHAR_LINE];
+        char userDataTypeFlag = 0;
 
         while((fgets(line, MAX_CHAR_LINE, headerFile)) != NULL){
 
             if(line[0] == '#'){
+                continue;
+            }
+
+            if(userDataTypeFlag){
+
+                if(strchr(line, '}') != NULL){ // ending the declaration
+                    userDataTypeFlag = 0;
+                }
+
+                continue;
+
+            }
+
+            if(strchr(line, '{') != NULL){ // defining a user data type
+
+                if(strrchr(line, '}') != NULL){ // one line declarations
+                    continue;
+                }
+
+                userDataTypeFlag = 1;
                 continue;
             }
 
