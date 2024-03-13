@@ -1,19 +1,22 @@
 # htoc
 
-htoc is a command line tool that takes in a header file and will create a template c file from it.
+htoc is a command line tool for GNU Linux that takes in a header file and will create a template c file from it.
+
+## Dependency
+
+`make` for installation.
 
 ## Installation
 
-Clone Repository and Change Directory into the new folder.
-```bash
-git clone https://www.github.com/kirkseytc/htoc.git && cd htoc
-```
+Download the latest release and extract the zip.
+
+Open up a terminal in the folder with the files you extracted and run the install command.
 
 Install Command:
 ```bash
 sudo make install
 ```
-(This will be installed into /usr/local/bin)
+(This will be installed into `/usr/local/bin`)
 
 ## Usage
 
