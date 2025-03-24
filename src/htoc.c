@@ -15,8 +15,8 @@ int main(int argc, char* argv[]){
 
         const int len = strlen(argv[i]) + 1;
 
-        char tempArr[len];
-        strcpy(tempArr, argv[i]);
+        char fileName[len];
+        strcpy(fileName, argv[i]);
 
         FILE* headerFile = fopen(argv[i], "r");
 
@@ -25,17 +25,17 @@ int main(int argc, char* argv[]){
             return 1;
         }
 
-        char* index = strchr(tempArr, '.');
+        char* index = strchr(fileName, '.');
         index++;
         *index = 'c';
 
-        FILE* newFile = fopen(tempArr, "w");
+        FILE* newFile = fopen(fileName, "w");
         if(!newFile){
-            printf("\"%s\" couldn't be created. Exiting program\n", tempArr);
+            printf("\"%s\" couldn't be created. Exiting program\n", fileName);
             return 2;
         }
 
-        fprintf(newFile, "#include \"%s.h\"\n", strtok(tempArr, "."));
+        fprintf(newFile, "#include \"%s.h\"\n", strtok(fileName, "."));
 
         char line[MAX_CHAR_LINE];
         char userDataTypeFlag = 0;
